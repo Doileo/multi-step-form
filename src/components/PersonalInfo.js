@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import Step from "./Step";
 import desktopImage from "../images/bg-sidebar-desktop.svg";
 import mobileImage from "../images/bg-sidebar-mobile.svg";
+import { useNavigate } from "react-router-dom";
 
-const PersonalInfo = () => {
+const PersonalInfo = ({ onNextStep }) => {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleResize = () => {
@@ -18,9 +20,10 @@ const PersonalInfo = () => {
   }, []);
 
   const handleNextStep = () => {
-    // Define what happens when the "Next Step" button is clicked
-    console.log("Moving to the next step...");
-    // Add logic here to navigate or handle the next step in your form
+    // Add form validation or other logic before moving to the next step
+    // For simplicity, directly move to the next step
+    onNextStep();
+    navigate("/select-plan");
   };
 
   return (
