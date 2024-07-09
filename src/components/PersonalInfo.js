@@ -38,8 +38,11 @@ const PersonalInfo = ({ onNextStep }) => {
           </div>
         </form>
 
-        {/* Next Step Button */}
-        <div className="next-step">
+        {/* Navigation Buttons */}
+        <div className="navigation-buttons">
+          <button type="button" onClick={() => navigate(-1)}>
+            Previous Step
+          </button>
           <button type="button" onClick={handleNextStep}>
             Next Step
           </button>

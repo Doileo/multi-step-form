@@ -27,7 +27,7 @@ const SelectPlan = ({ onNextStep, onPrevStep }) => {
 
   const handleGoBack = () => {
     onPrevStep();
-    navigate("/");
+    navigate(-1); // Navigate back to the previous step
   };
 
   return (
