@@ -32,6 +32,7 @@ const SelectPlan = ({ onNextStep, onPrevStep }) => {
 
   return (
     <StepLayout currentStep={2}>
+      {/* Content */}
       <div className="select-plan">
         <header className="select-plan__header">
           <h1>Select your plan</h1>

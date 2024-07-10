@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./styles/App.css";
 import "./styles/main.css";
@@ -9,14 +9,12 @@ import Summary from "./components/Summary";
 import Confirmation from "./components/Confirmation";
 
 const App = () => {
-  const [currentStep, setCurrentStep] = useState(1);
-
   const handleNextStep = () => {
-    setCurrentStep((prevStep) => prevStep + 1);
+    // Handle next step logic if needed
   };
 
   const handlePrevStep = () => {
-    setCurrentStep((prevStep) => prevStep - 1);
+    // Handle previous step logic if needed
   };
 
   return (
@@ -36,7 +34,12 @@ const App = () => {
               />
             }
           />
-          <Route path="/add-ons" element={<AddOns />} />
+          <Route
+            path="/add-ons"
+            element={
+              <AddOns onNextStep={handleNextStep} onPrevStep={handlePrevStep} />
+            }
+          />
           <Route path="/summary" element={<Summary />} />
           <Route path="/confirmation" element={<Confirmation />} />
         </Routes>
