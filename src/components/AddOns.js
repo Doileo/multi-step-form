@@ -7,7 +7,7 @@ const AddOns = ({ onNextStep, onPrevStep }) => {
   const navigate = useNavigate();
 
   const handleNextStep = () => {
-    navigate("/confirmation", {
+    navigate("/summary", {
       state: { selectedAddOns },
     });
   };

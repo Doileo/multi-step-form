@@ -40,7 +40,15 @@ const App = () => {
               <AddOns onNextStep={handleNextStep} onPrevStep={handlePrevStep} />
             }
           />
-          <Route path="/summary" element={<Summary />} />
+          <Route
+            path="/summary"
+            element={
+              <Summary
+                onNextStep={handleNextStep}
+                onPrevStep={handlePrevStep}
+              />
+            }
+          />
           <Route path="/confirmation" element={<Confirmation />} />
         </Routes>
       </div>
