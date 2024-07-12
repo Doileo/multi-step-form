@@ -47,7 +47,8 @@ const Summary = ({ onPrevStep }) => {
 
   // Handle confirmation logic
   const handleConfirm = () => {
-    // Implement confirmation logic here
+    onPrevStep(); // This should navigate back to the previous step
+    navigate("/confirmation");
   };
 
   return (
