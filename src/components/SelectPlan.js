@@ -6,23 +6,39 @@ import proIcon from "../images/icon-pro.svg";
 import { useNavigate } from "react-router-dom";
 
 const SelectPlan = ({ onNextStep, onPrevStep }) => {
+  const [selectedPlan, setSelectedPlan] = useState(null);
   const [billingCycle, setBillingCycle] = useState("monthly");
   const navigate = useNavigate();
 
   const plans = [
-    { name: "Arcade", monthly: "$9/mo", yearly: "$90/yr", icon: arcadeIcon },
+    { id: "arcade", name: "Arcade", monthly: 9, yearly: 90, icon: arcadeIcon },
     {
+      id: "advanced",
       name: "Advanced",
-      monthly: "$12/mo",
-      yearly: "$120/yr",
+      monthly: 12,
+      yearly: 120,
       icon: advancedIcon,
     },
-    { name: "Pro", monthly: "$15/mo", yearly: "$150/yr", icon: proIcon },
+    { id: "pro", name: "Pro", monthly: 15, yearly: 150, icon: proIcon },
   ];
 
+  const handleSelectPlan = (plan) => {
+    setSelectedPlan(plan);
+  };
+
   const handleNextStep = () => {
-    onNextStep();
-    navigate("/add-ons");
+    if (selectedPlan) {
+      const selectedPlanDetails = {
+        ...selectedPlan,
+        price:
+          billingCycle === "monthly"
+            ? selectedPlan.monthly
+            : selectedPlan.yearly,
+        billingCycle,
+      };
+      onNextStep(selectedPlanDetails);
+      navigate("/add-ons", { state: { selectedPlan: selectedPlanDetails } });
+    }
   };
 
   const handleGoBack = () => {
@@ -32,7 +48,6 @@ const SelectPlan = ({ onNextStep, onPrevStep }) => {
 
   return (
     <StepLayout currentStep={2}>
-      {/* Content */}
       <div className="select-plan">
         <header className="select-plan__header">
           <h1>Select your plan</h1>
@@ -40,7 +55,13 @@ const SelectPlan = ({ onNextStep, onPrevStep }) => {
         </header>
         <div className="select-plan__options">
           {plans.map((plan) => (
-            <div key={plan.name} className="plan-option">
+            <div
+              key={plan.id}
+              className={`plan-option ${
+                selectedPlan?.id === plan.id ? "selected" : ""
+              }`}
+              onClick={() => handleSelectPlan(plan)}
+            >
               <img
                 src={plan.icon}
                 alt={`${plan.name} icon`}
@@ -49,7 +70,9 @@ const SelectPlan = ({ onNextStep, onPrevStep }) => {
               <div>
                 <h2>{plan.name}</h2>
                 <p>
-                  {billingCycle === "monthly" ? plan.monthly : plan.yearly}
+                  {billingCycle === "monthly"
+                    ? `$${plan.monthly}/mo`
+                    : `$${plan.yearly}/yr`}
                   {billingCycle === "yearly" && <span> + 2 months free</span>}
                 </p>
               </div>
@@ -85,7 +108,11 @@ const SelectPlan = ({ onNextStep, onPrevStep }) => {
             </button>
           </div>
           <div className="next-step">
-            <button className="select-plan__next-step" onClick={handleNextStep}>
+            <button
+              className="select-plan__next-step"
+              onClick={handleNextStep}
+              disabled={!selectedPlan} // Disable button if no plan is selected
+            >
               Next Step
             </button>
           </div>

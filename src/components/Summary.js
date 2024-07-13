@@ -8,24 +8,11 @@ const Summary = ({ onPrevStep }) => {
   const { selectedPlan, selectedAddOns } = location.state || {};
 
   const addons = [
-    {
-      id: "online-service",
-      name: "Online service",
-      price: 1,
-    },
-    {
-      id: "larger-storage",
-      name: "Larger storage",
-      price: 2,
-    },
-    {
-      id: "customizable-profile",
-      name: "Customizable profile",
-      price: 2,
-    },
+    { id: "online-service", name: "Online service", price: 1 },
+    { id: "larger-storage", name: "Larger storage", price: 2 },
+    { id: "customizable-profile", name: "Customizable profile", price: 2 },
   ];
 
-  // Calculate total price including selected plan and addons
   const calculateTotal = () => {
     let total = selectedPlan ? selectedPlan.price : 0;
     if (selectedAddOns && selectedAddOns.length > 0) {
@@ -39,13 +26,11 @@ const Summary = ({ onPrevStep }) => {
     return total;
   };
 
-  // Handle navigation to previous step
   const handleGoBack = () => {
     onPrevStep(); // Navigate back to the previous step
     navigate("/add-ons"); // Navigate to the add-ons step
   };
 
-  // Handle confirmation logic
   const handleConfirm = () => {
     onPrevStep(); // This should navigate back to the previous step
     navigate("/confirmation");
@@ -66,30 +51,47 @@ const Summary = ({ onPrevStep }) => {
                 <span>{selectedPlan.name}</span>
                 <span>({selectedPlan.billingCycle})</span>
                 <span>
-                  <a href="#select-plan">Change</a>
+                  <a
+                    href="#select-plan"
+                    onClick={() => navigate("/select-plan")}
+                  >
+                    Change
+                  </a>
                 </span>
               </div>
               <div>
-                <span>{selectedPlan.price}</span>
+                <span>
+                  ${selectedPlan.price}/
+                  {selectedPlan.billingCycle === "monthly" ? "mo" : "yr"}
+                </span>
               </div>
               <hr />
             </>
           )}
 
           <div>
-            {addons.map((addon) => (
-              <div key={addon.id}>
-                <span>{addon.name}</span>
-                <span>{addon.price}</span>
-              </div>
-            ))}
+            {selectedAddOns && selectedAddOns.length > 0 && (
+              <>
+                {selectedAddOns.map((addonId) => {
+                  const addon = addons.find((item) => item.id === addonId);
+                  return (
+                    addon && (
+                      <div key={addon.id}>
+                        <span>{addon.name}</span>
+                        <span>${addon.price}</span>
+                      </div>
+                    )
+                  );
+                })}
+              </>
+            )}
           </div>
 
           <div className="total">
             <span>
               Total ({selectedPlan ? selectedPlan.billingCycle : "Unknown"})
             </span>
-            <span>{calculateTotal()}</span>
+            <span>${calculateTotal()}</span>
           </div>
         </div>
 

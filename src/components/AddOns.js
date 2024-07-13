@@ -1,50 +1,36 @@
 import React, { useState } from "react";
 import StepLayout from "./StepLayout";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const AddOns = ({ onNextStep, onPrevStep }) => {
-  const [selectedAddOns, setSelectedAddOns] = useState([]);
+  const location = useLocation();
   const navigate = useNavigate();
+  const { selectedPlan } = location.state || {};
+
+  const [selectedAddOns, setSelectedAddOns] = useState([]);
+
+  const addons = [
+    { id: "online-service", name: "Online service", price: 1 },
+    { id: "larger-storage", name: "Larger storage", price: 2 },
+    { id: "customizable-profile", name: "Customizable profile", price: 2 },
+  ];
+
+  const handleToggleAddon = (addonId) => {
+    setSelectedAddOns((prevSelectedAddOns) =>
+      prevSelectedAddOns.includes(addonId)
+        ? prevSelectedAddOns.filter((id) => id !== addonId)
+        : [...prevSelectedAddOns, addonId]
+    );
+  };
 
   const handleNextStep = () => {
-    navigate("/summary", {
-      state: { selectedAddOns },
-    });
+    onNextStep();
+    navigate("/summary", { state: { selectedPlan, selectedAddOns } });
   };
 
   const handleGoBack = () => {
-    onPrevStep(); // This should navigate back to the previous step
-    navigate("/select-plan"); // Optional: Explicit navigation to ensure correct route
-  };
-
-  const addOns = [
-    {
-      id: "online-service",
-      name: "Online service",
-      description: "Access to multiplayer games",
-      price: 1,
-    },
-    {
-      id: "larger-storage",
-      name: "Larger storage",
-      description: "Extra 1TB of cloud save",
-      price: 2,
-    },
-    {
-      id: "customizable-profile",
-      name: "Customizable profile",
-      description: "Custom theme on your profile",
-      price: 2,
-    },
-  ];
-
-  const handleAddOnSelect = (addOnId) => {
-    const index = selectedAddOns.indexOf(addOnId);
-    if (index === -1) {
-      setSelectedAddOns([...selectedAddOns, addOnId]);
-    } else {
-      setSelectedAddOns(selectedAddOns.filter((item) => item !== addOnId));
-    }
+    onPrevStep();
+    navigate(-1); // Navigate back to the previous step
   };
 
   return (
@@ -52,23 +38,22 @@ const AddOns = ({ onNextStep, onPrevStep }) => {
       <div className="add-ons">
         <header className="add-ons__header">
           <h1>Pick add-ons</h1>
-          <p>Add-ons help enhance your gaming experience</p>
+          <p>Add-ons help enhance your gaming experience.</p>
         </header>
         <div className="add-ons__options">
-          {addOns.map((addOn) => (
-            <div key={addOn.id} className="add-on">
-              <div>
-                <h2>{addOn.name}</h2>
-                <p>${addOn.price}/mo</p>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={selectedAddOns.includes(addOn.id)}
-                    onChange={() => handleAddOnSelect(addOn.id)}
-                  />
-                  <span>{addOn.description}</span>
-                </label>
-              </div>
+          {addons.map((addon) => (
+            <div key={addon.id} className="add-on-option">
+              <label>
+                <input
+                  type="checkbox"
+                  checked={selectedAddOns.includes(addon.id)}
+                  onChange={() => handleToggleAddon(addon.id)}
+                />
+                <span>{addon.name}</span>
+                <span>{`+$${addon.price}/${
+                  selectedPlan.billingCycle === "monthly" ? "mo" : "yr"
+                }`}</span>
+              </label>
             </div>
           ))}
         </div>
