@@ -1,1 +1,173 @@
+/* ------------------- */
+/* Reset               */
+/* ------------------- */
 
+/* https://piccalil.li/blog/a-modern-css-reset/ */
+
+/* Box sizing */
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+/* Reset margins */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+picture {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  font-weight: 400;
+}
+
+body {
+  font-family: "Ubuntu", sans-serif;
+  color: var(--grey-color);
+  background-color: var(--background-color);
+  min-height: 100vh;
+}
+
+/* images */
+img,
+picture {
+  display: block;
+  max-width: 100%;
+}
+
+/* form elements */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* remove animation for people who've turned them off  */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *:before,
+  *:after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ------------------- */
+/* Utility classes     */
+/* ------------------- */
+
+/* general */
+.flex {
+  display: flex;
+  gap: var(--gap, 1rem);
+}
+
+.grid {
+  display: grid;
+  gap: var(--gap, 1rem);
+}
+
+.container {
+  width: 100%;
+  max-width: 345px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 940px;
+  }
+}
+
+.mt-1 {
+  margin-top: 1rem;
+}
+.mb-1 {
+  margin-bottom: 1rem;
+}
+.text-center {
+  text-align: center;
+}
+
+/* Font Sizes */
+.font-32 {
+  font-size: var(--font-size-32);
+}
+.font-24 {
+  font-size: var(--font-size-24);
+}
+.font-16 {
+  font-size: var(--font-size-16);
+}
+.font-14 {
+  font-size: var(--font-size-14);
+}
+.font-12 {
+  font-size: var(--font-size-12);
+}
+
+/* ------------------- */
+/* Root Variables      */
+/* ------------------- */
+
+:root {
+  /* Custom Colors */
+  --background-color: hsl(217, 100%, 97%);
+  --border-color: hsl(231, 18%, 90%);
+  --denim-color: hsl(213, 96%, 13%);
+  --grey-color: hsl(231, 11%, 63%);
+  --light-blue-color: hsl(231, 100%, 85%);
+  --light-grey-color: hsl(231, 18%, 90%);
+  --orange-color: hsl(25, 100%, 71%);
+  --pink-color: hsl(348, 90%, 72%);
+  --purple-color: hsl(243, 100%, 62%);
+  --red-error-color: hsl(4, 82%, 60%);
+  --sky-blue-color: hsl(206, 89%, 85%);
+  --very-light-grey-color: hsl(240, 100%, 99%);
+  --white-color: hsl(0, 0%, 100%);
+
+  /* Font Sizes */
+  --font-size-32: 2rem; /* 32px */
+  --font-size-24: 1.5rem; /* 24px */
+  --font-size-16: 1rem; /* 16px */
+  --font-size-14: 0.875rem; /* 14px */
+  --font-size-12: 0.75rem; /* 12px */
+}
+
+/* ------------------- */
+/* Global Layouts      */
+/* ------------------- */
+
+header {
+  color: var(--denim-color);
+  padding: 1rem;
+  text-align: left;
+}
+
+footer {
+  background-color: var(--white-color);
+  color: var(--grey-color);
+  padding: 1rem;
+  text-align: center;
+}
+
+h1,
+h2 {
+  font-weight: 700;
+  margin-top: 0;
+  line-height: 1.5;
+}
