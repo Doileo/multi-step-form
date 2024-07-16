@@ -1,6 +1,7 @@
 import React from "react";
-import StepLayout from "./StepLayout";
+import StepLayout from "../StepLayout/StepLayout";
 import { useLocation, useNavigate } from "react-router-dom";
+import "./Summary.css";
 
 const Summary = ({ onPrevStep }) => {
   const location = useLocation();

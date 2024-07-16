@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import StepLayout from "./StepLayout";
-import arcadeIcon from "../images/icon-arcade.svg";
-import advancedIcon from "../images/icon-advanced.svg";
-import proIcon from "../images/icon-pro.svg";
+import StepLayout from "../StepLayout/StepLayout";
+import arcadeIcon from "../../images/icon-arcade.svg";
+import advancedIcon from "../../images/icon-advanced.svg";
+import proIcon from "../../images/icon-pro.svg";
 import { useNavigate } from "react-router-dom";
+import "./SelectPlan.css";
 
 const SelectPlan = ({ onNextStep, onPrevStep }) => {
   const [selectedPlan, setSelectedPlan] = useState(null);

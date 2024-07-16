@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Step from "./Step";
-import desktopImage from "../images/bg-sidebar-desktop.svg";
-import mobileImage from "../images/bg-sidebar-mobile.svg";
+import Step from "../Step/Step";
+import desktopImage from "../../images/bg-sidebar-desktop.svg";
+import mobileImage from "../../images/bg-sidebar-mobile.svg";
+import "./StepLayout.css";
 
 const StepLayout = ({ currentStep, children }) => {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);

@@ -1,6 +1,7 @@
 import React from "react";
-import StepLayout from "./StepLayout";
+import StepLayout from "../StepLayout/StepLayout";
 import { useNavigate } from "react-router-dom";
+import "./PersonalInfo.css";
 
 const PersonalInfo = ({ onNextStep }) => {
   const navigate = useNavigate();

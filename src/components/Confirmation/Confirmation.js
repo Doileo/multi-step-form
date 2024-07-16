@@ -1,7 +1,8 @@
 import React from "react";
-import StepLayout from "./StepLayout";
+import StepLayout from "../StepLayout/StepLayout";
 import { useNavigate } from "react-router-dom";
-import ThankYouIcon from "../images/icon-thank-you.svg";
+import ThankYouIcon from "../../images/icon-thank-you.svg";
+import "./Confirmation.css";
 
 const Confirmation = () => {
   const navigate = useNavigate();

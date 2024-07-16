@@ -1,12 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./styles/App.css";
-import "./styles/main.css";
-import PersonalInfo from "./components/PersonalInfo";
-import SelectPlan from "./components/SelectPlan";
-import AddOns from "./components/AddOns";
-import Summary from "./components/Summary";
-import Confirmation from "./components/Confirmation";
+import PersonalInfo from "./components/PersonalInfo/PersonalInfo";
+import SelectPlan from "./components/SelectPlan/SelectPlan";
+import AddOns from "./components/AddOns/AddOns";
+import Summary from "./components/Summary/Summary";
+import Confirmation from "./components/Confirmation/Confirmation";
 
 const App = () => {
   const handleNextStep = () => {
