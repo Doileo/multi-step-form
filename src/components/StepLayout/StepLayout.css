@@ -33,7 +33,7 @@
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
-  border: 2px solid var(--sky-blue-color);
+  border: 1px solid var(--white-color);
   background-color: transparent;
   color: var(--white-color);
 }
@@ -126,11 +126,6 @@
 
 .desktop-steps .step .step-name {
   color: white;
-}
-
-.step-text {
-  display: grid;
-  gap: 0.25rem;
 }
 
 .step-main-text {

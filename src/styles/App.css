@@ -35,6 +35,7 @@ body {
   font-family: "Ubuntu", sans-serif;
   color: var(--grey-color);
   background-color: var(--background-color);
+  line-height: 1.5rem;
   min-height: 100vh;
 }
 
