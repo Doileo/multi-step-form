@@ -38,19 +38,6 @@
   color: var(--white-color);
 }
 
-.step-content {
-  width: 90%;
-  max-width: 768px;
-  min-height: 566px;
-  margin-top: -5rem;
-  position: relative;
-  z-index: 1;
-  background: var(--white-color);
-  padding: 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
-
 /* Desktop Layout */
 .desktop-layout {
   height: 600px;
@@ -122,6 +109,7 @@
 
 .desktop-steps .step .step-number:hover {
   background-color: var(--sky-blue-color);
+  color: var(--denim-color);
 }
 
 .desktop-steps .step .step-name {

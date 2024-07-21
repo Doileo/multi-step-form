@@ -1,12 +1,23 @@
 .personal-info-container {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  min-height: 50vh; /* Adjusted to 50vh */
+  position: relative;
 }
 
 .info-content {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  width: 90%;
+  max-width: 768px;
+  margin: -18% auto;
+  position: relative;
+  z-index: 1;
+  background: var(--white-color);
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  flex-grow: 1;
+  margin-bottom: 2rem;
 }
 
 .info-heading {
@@ -42,7 +53,21 @@ label {
 }
 
 .navigation-buttons {
-  background-color: var(--white-color);
-  color: var(--grey-color);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   padding: 1rem;
+  background: var(--white-color);
+  text-align: right;
+}
+
+.navigation-buttons button {
+  background-color: var(--denim-color);
+  color: var(--white-color);
+  border: none;
+  border-radius: 5px;
+  padding: 0.75rem 1.5rem;
+  font-size: var(--font-size-14);
+  cursor: pointer;
 }
