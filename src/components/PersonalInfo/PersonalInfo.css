@@ -63,11 +63,41 @@ label {
 }
 
 .navigation-buttons button {
-  background-color: var(--denim-color);
+  background-color: #164a8a;
   color: var(--white-color);
   border: none;
   border-radius: 5px;
   padding: 0.75rem 1.5rem;
   font-size: var(--font-size-14);
   cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .personal-info-container {
+    gap: 4rem;
+  }
+
+  .info-content {
+    box-shadow: none;
+    margin: -5% auto;
+    display: grid;
+    gap: 0.5rem;
+    background: transparent;
+    min-height: auto;
+    flex-grow: unset;
+  }
+
+  .info-heading {
+    font-size: var(--font-size-32);
+  }
+
+  .navigation-buttons {
+    position: unset;
+    width: 84%;
+    margin: 0 auto;
+  }
+
+  .navigation-buttons button:hover {
+    background-color: var(--denim-color);
+  }
 }
