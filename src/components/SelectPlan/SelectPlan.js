@@ -50,10 +50,10 @@ const SelectPlan = ({ onNextStep, onPrevStep }) => {
   return (
     <StepLayout currentStep={2}>
       <div className="select-plan">
-        <header className="select-plan__header">
+        <div className="select-plan__content">
           <h1>Select your plan</h1>
           <p>You have the option of monthly or yearly billing.</p>
-        </header>
+        </div>
         <div className="select-plan__options">
           {plans.map((plan) => (
             <div
@@ -81,36 +81,34 @@ const SelectPlan = ({ onNextStep, onPrevStep }) => {
           ))}
         </div>
         <div className="select-plan__billing-toggle">
-          <label>
+          <span className={billingCycle === "monthly" ? "active" : ""}>
             Monthly
+          </span>
+          <label className="switch">
             <input
-              type="radio"
-              name="billing"
-              value="monthly"
-              checked={billingCycle === "monthly"}
-              onChange={() => setBillingCycle("monthly")}
-            />
-          </label>
-          <label>
-            Yearly
-            <input
-              type="radio"
-              name="billing"
-              value="yearly"
+              type="checkbox"
               checked={billingCycle === "yearly"}
-              onChange={() => setBillingCycle("yearly")}
+              onChange={() =>
+                setBillingCycle(
+                  billingCycle === "monthly" ? "yearly" : "monthly"
+                )
+              }
             />
+            <span className="slider"></span>
           </label>
+          <span className={billingCycle === "yearly" ? "active" : ""}>
+            Yearly
+          </span>
         </div>
-        <div className="select-plan__footer">
+        <div className="navigation-buttons">
           <div className="previous-step">
-            <button className="select-plan__go-back" onClick={handleGoBack}>
+            <button className="go-back__button" onClick={handleGoBack}>
               Go Back
             </button>
           </div>
           <div className="next-step">
             <button
-              className="select-plan__next-step"
+              className="next-step__button"
               onClick={handleNextStep}
               disabled={!selectedPlan} // Disable button if no plan is selected
             >
