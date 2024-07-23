@@ -11,9 +11,24 @@ const AddOns = ({ onNextStep, onPrevStep }) => {
   const [selectedAddOns, setSelectedAddOns] = useState([]);
 
   const addons = [
-    { id: "online-service", name: "Online service", price: 1 },
-    { id: "larger-storage", name: "Larger storage", price: 2 },
-    { id: "customizable-profile", name: "Customizable profile", price: 2 },
+    {
+      id: "online-service",
+      name: "Online service",
+      price: 1,
+      description: "Access to multiplayer games",
+    },
+    {
+      id: "larger-storage",
+      name: "Larger storage",
+      price: 2,
+      description: "Extra 1TB of cloud save",
+    },
+    {
+      id: "customizable-profile",
+      name: "Customizable profile",
+      price: 2,
+      description: "Custom theme on your profile",
+    },
   ];
 
   const handleToggleAddon = (addonId) => {
@@ -37,10 +52,10 @@ const AddOns = ({ onNextStep, onPrevStep }) => {
   return (
     <StepLayout currentStep={3}>
       <div className="add-ons">
-        <header className="add-ons__header">
+        <div className="add-ons__content">
           <h1>Pick add-ons</h1>
           <p>Add-ons help enhance your gaming experience.</p>
-        </header>
+        </div>
         <div className="add-ons__options">
           {addons.map((addon) => (
             <div key={addon.id} className="add-on-option">
@@ -50,22 +65,33 @@ const AddOns = ({ onNextStep, onPrevStep }) => {
                   checked={selectedAddOns.includes(addon.id)}
                   onChange={() => handleToggleAddon(addon.id)}
                 />
-                <span>{addon.name}</span>
-                <span>{`+$${addon.price}/${
-                  selectedPlan.billingCycle === "monthly" ? "mo" : "yr"
-                }`}</span>
+                <div className="add-on-content">
+                  <div className="add-on-info">
+                    <span className="add-on-name">{addon.name}</span>
+                    <span className="add-on-description">
+                      {addon.description}
+                    </span>
+                  </div>
+                  <span className="add-on-price">{`+$${addon.price}/${
+                    selectedPlan.billingCycle === "monthly" ? "mo" : "yr"
+                  }`}</span>
+                </div>
               </label>
             </div>
           ))}
         </div>
-        <div className="add-ons__footer">
+        <div className="navigation-buttons">
           <div className="previous-step">
-            <button className="add-ons__go-back" onClick={handleGoBack}>
+            <button className="go-back__button" onClick={handleGoBack}>
               Go Back
             </button>
           </div>
           <div className="next-step">
-            <button className="add-ons__next-step" onClick={handleNextStep}>
+            <button
+              className="next-step__button"
+              onClick={handleNextStep}
+              disabled={!selectedPlan} // Disable button if no plan is selected
+            >
               Next Step
             </button>
           </div>
