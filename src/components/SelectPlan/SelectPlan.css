@@ -46,6 +46,7 @@
 
 .plan-option:hover {
   border-color: var(--purple-color);
+  background-color: var(--very-light-grey-color);
 }
 
 .plan-option.selected {
@@ -150,7 +151,7 @@ input:checked + .slider:before {
   .select-plan {
     box-shadow: none;
     margin: -5% auto 0;
-    padding: 1rem;
+    padding: 0 1rem;
     width: 100%;
     gap: 2.5rem;
   }
@@ -163,6 +164,7 @@ input:checked + .slider:before {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    margin-bottom: 0.5rem;
   }
 
   .plan-option {
@@ -174,5 +176,15 @@ input:checked + .slider:before {
     width: 100%;
     transition: border-color 0.3s ease;
     cursor: pointer;
+  }
+
+  .select-plan .navigation-buttons {
+    width: 100%;
+    padding: 1rem 0;
+  }
+
+  .go-back__button,
+  .next-back__button {
+    font-size: var(--font-size-16);
   }
 }

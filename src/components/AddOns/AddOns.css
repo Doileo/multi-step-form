@@ -105,3 +105,36 @@
   align-items: center;
   justify-content: space-between;
 }
+
+@media (min-width: 768px) {
+  .add-ons {
+    box-shadow: none;
+    margin: -7% auto 0;
+    padding: 1rem;
+    width: 100%;
+    gap: 2.25rem;
+  }
+
+  .add-ons__content h1 {
+    font-size: var(--font-size-32);
+  }
+
+  .add-ons__options {
+    margin-bottom: 0.5rem;
+  }
+
+  .add-on-name {
+    font-size: var(--font-size-16);
+  }
+
+  .add-on-description,
+  .add-on-price {
+    font-size: var(--font-size-16);
+  }
+
+  .add-ons .navigation-buttons {
+    width: 100%;
+    padding: 1rem 0;
+    margin-top: 2rem;
+  }
+}
