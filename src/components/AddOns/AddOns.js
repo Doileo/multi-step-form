@@ -58,7 +58,12 @@ const AddOns = ({ onNextStep, onPrevStep }) => {
         </div>
         <div className="add-ons__options">
           {addons.map((addon) => (
-            <div key={addon.id} className="add-on-option">
+            <div
+              key={addon.id}
+              className={`add-on-option ${
+                selectedAddOns.includes(addon.id) ? "selected" : ""
+              }`}
+            >
               <label>
                 <input
                   type="checkbox"
@@ -72,7 +77,11 @@ const AddOns = ({ onNextStep, onPrevStep }) => {
                       {addon.description}
                     </span>
                   </div>
-                  <span className="add-on-price">{`+$${addon.price}/${
+                  <span
+                    className={`add-on-price ${
+                      selectedAddOns.includes(addon.id) ? "selected" : ""
+                    }`}
+                  >{`+$${addon.price}/${
                     selectedPlan.billingCycle === "monthly" ? "mo" : "yr"
                   }`}</span>
                 </div>

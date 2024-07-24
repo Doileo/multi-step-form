@@ -99,6 +99,10 @@
   color: var(--grey-color);
 }
 
+.add-on-price.selected {
+  color: var(--purple-color);
+}
+
 .add-ons .navigation-buttons {
   display: flex;
   flex-direction: row;
