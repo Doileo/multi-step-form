@@ -6,7 +6,7 @@ import "./AddOns.css";
 const AddOns = ({ onNextStep, onPrevStep }) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { selectedPlan } = location.state || {};
+  const { selectedPlan } = location.state || { billingCycle: "monthly" }; // Provide a default value for billingCycle
 
   const [selectedAddOns, setSelectedAddOns] = useState([]);
 
@@ -82,8 +82,9 @@ const AddOns = ({ onNextStep, onPrevStep }) => {
                       selectedAddOns.includes(addon.id) ? "selected" : ""
                     }`}
                   >{`+$${addon.price}/${
-                    selectedPlan.billingCycle === "monthly" ? "mo" : "yr"
-                  }`}</span>
+                    selectedPlan?.billingCycle === "monthly" ? "mo" : "yr"
+                  }`}</span>{" "}
+                  {/* Use optional chaining to safely access billingCycle */}
                 </div>
               </label>
             </div>
