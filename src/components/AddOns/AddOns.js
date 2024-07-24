@@ -99,7 +99,7 @@ const AddOns = ({ onNextStep, onPrevStep }) => {
             <button
               className="next-step__button"
               onClick={handleNextStep}
-              disabled={!selectedPlan} // Disable button if no plan is selected
+              disabled={selectedAddOns.length === 0} // Disable button if no add-ons are selected
             >
               Next Step
             </button>
