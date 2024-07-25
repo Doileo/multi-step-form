@@ -46,64 +46,68 @@ const Summary = ({ onPrevStep }) => {
         </div>
 
         <div className="plan-details">
-          {selectedPlan && (
-            <>
-              <div>
-                <span>{selectedPlan.name}</span>
-                <span>({selectedPlan.billingCycle})</span>
-                <span>
-                  <a
-                    href="#select-plan"
-                    onClick={() => navigate("/select-plan")}
-                  >
-                    Change
-                  </a>
-                </span>
+          <div className="plan-header">
+            <div className="plan-info">
+              <div className="plan-name">
+                <span>{selectedPlan ? selectedPlan.name : ""}</span>
+                <span>({selectedPlan ? selectedPlan.billingCycle : ""})</span>
               </div>
-              <div>
-                <span>
-                  ${selectedPlan.price}/
-                  {selectedPlan.billingCycle === "monthly" ? "mo" : "yr"}
-                </span>
-              </div>
-              <hr />
-            </>
+              <a href="#select-plan" onClick={() => navigate("/select-plan")}>
+                Change
+              </a>
+            </div>
+            <div className="price">
+              {selectedPlan
+                ? `$${selectedPlan.price}/${
+                    selectedPlan.billingCycle === "Monthly" ? "mo" : "yr"
+                  }`
+                : ""}
+            </div>
+          </div>
+
+          <hr />
+
+          {selectedAddOns && selectedAddOns.length > 0 && (
+            <div className="addons">
+              {selectedAddOns.map((addonId) => {
+                const addon = addons.find((item) => item.id === addonId);
+                return (
+                  <div className="addon-item" key={addon.id}>
+                    <span>{addon.name}</span>
+                    <span>
+                      +${addon.price}/
+                      {selectedPlan.billingCycle === "Monthly" ? "mo" : "yr"}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
           )}
-
-          <div>
-            {selectedAddOns && selectedAddOns.length > 0 && (
-              <>
-                {selectedAddOns.map((addonId) => {
-                  const addon = addons.find((item) => item.id === addonId);
-                  return (
-                    addon && (
-                      <div key={addon.id}>
-                        <span>{addon.name}</span>
-                        <span>${addon.price}</span>
-                      </div>
-                    )
-                  );
-                })}
-              </>
-            )}
-          </div>
-
-          <div className="total">
-            <span>
-              Total ({selectedPlan ? selectedPlan.billingCycle : "Unknown"})
-            </span>
-            <span>${calculateTotal()}</span>
-          </div>
         </div>
 
-        <div className="summary__footer">
+        <div className="total">
+          <span>
+            Total (per{" "}
+            {selectedPlan ? selectedPlan.billingCycle.toLowerCase() : "month"})
+          </span>
+          <span>
+            +${calculateTotal()}/
+            {selectedPlan
+              ? selectedPlan.billingCycle === "Monthly"
+                ? "mo"
+                : "yr"
+              : ""}
+          </span>
+        </div>
+
+        <div className="navigation-buttons">
           <div className="previous-step">
-            <button className="summary__go-back" onClick={handleGoBack}>
+            <button className="go-back__button" onClick={handleGoBack}>
               Go Back
             </button>
           </div>
           <div className="next-step">
-            <button className="summary__confirm" onClick={handleConfirm}>
+            <button className="next-step__button" onClick={handleConfirm}>
               Confirm
             </button>
           </div>
