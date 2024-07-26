@@ -31,7 +31,7 @@ const Confirmation = () => {
           </p>
         </div>
 
-        <div className="confirmation__footer">
+        <div className="navigation-buttons">
           <div className="back-to-home">
             <button className="confirmation__go-home" onClick={handleGoHome}>
               Back to Home

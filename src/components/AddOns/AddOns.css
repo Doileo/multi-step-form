@@ -110,6 +110,20 @@
   justify-content: space-between;
 }
 
+.add-ons .go-back__button {
+  background-color: transparent;
+  color: var(--grey-color);
+  border: none;
+  padding: 0.5rem 1.25rem;
+  font-size: var(--font-size-14);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.add-ons .go-back__button:hover {
+  color: var(--denim-color);
+}
+
 @media (min-width: 768px) {
   .add-ons {
     box-shadow: none;
