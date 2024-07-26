@@ -98,3 +98,42 @@
   align-items: center;
   justify-content: space-between;
 }
+
+@media (min-width: 768px) {
+  .summary {
+    box-shadow: none;
+    margin: -7% auto 0;
+    padding: 0.5rem;
+    width: 100%;
+    gap: 2.25rem;
+  }
+
+  .top-elements h2 {
+    font-size: var(--font-size-32);
+  }
+
+  .plan-name,
+  .price {
+    font-size: var(--font-size-16);
+  }
+
+  .addon-item {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .summary .navigation-buttons {
+    width: 100%;
+    padding: 1rem 0;
+    margin-top: 2rem;
+  }
+
+  .summary .next-step__button {
+    background-color: var(--purple-color);
+    font-size: var(--font-size-16);
+  }
+
+  .summary .next-step__button:hover {
+    background-color: #928cff;
+  }
+}
