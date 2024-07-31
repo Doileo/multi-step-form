@@ -10,7 +10,7 @@ const AddOns = ({ onNextStep, onPrevStep }) => {
 
   const [selectedAddOns, setSelectedAddOns] = useState([]);
 
-  const addons = [
+  const monthlyAddons = [
     {
       id: "online-service",
       name: "Online service",
@@ -30,6 +30,30 @@ const AddOns = ({ onNextStep, onPrevStep }) => {
       description: "Custom theme on your profile",
     },
   ];
+
+  const yearlyAddons = [
+    {
+      id: "online-service",
+      name: "Online service",
+      price: 10,
+      description: "Access to multiplayer games",
+    },
+    {
+      id: "larger-storage",
+      name: "Larger storage",
+      price: 20,
+      description: "Extra 1TB of cloud save",
+    },
+    {
+      id: "customizable-profile",
+      name: "Customizable profile",
+      price: 20,
+      description: "Custom theme on your profile",
+    },
+  ];
+
+  const addons =
+    selectedPlan?.billingCycle === "yearly" ? yearlyAddons : monthlyAddons;
 
   const handleToggleAddon = (addonId) => {
     setSelectedAddOns((prevSelectedAddOns) =>
@@ -83,8 +107,7 @@ const AddOns = ({ onNextStep, onPrevStep }) => {
                     }`}
                   >{`+$${addon.price}/${
                     selectedPlan?.billingCycle === "monthly" ? "mo" : "yr"
-                  }`}</span>{" "}
-                  {/* Use optional chaining to safely access billingCycle */}
+                  }`}</span>
                 </div>
               </label>
             </div>
