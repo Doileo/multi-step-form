@@ -8,11 +8,20 @@ const Summary = ({ onPrevStep }) => {
   const navigate = useNavigate();
   const { selectedPlan, selectedAddOns } = location.state || {};
 
-  const addons = [
+  const monthlyAddons = [
     { id: "online-service", name: "Online service", price: 1 },
     { id: "larger-storage", name: "Larger storage", price: 2 },
     { id: "customizable-profile", name: "Customizable profile", price: 2 },
   ];
+
+  const yearlyAddons = [
+    { id: "online-service", name: "Online service", price: 10 },
+    { id: "larger-storage", name: "Larger storage", price: 20 },
+    { id: "customizable-profile", name: "Customizable profile", price: 20 },
+  ];
+
+  const addons =
+    selectedPlan?.billingCycle === "yearly" ? yearlyAddons : monthlyAddons;
 
   const calculateTotal = () => {
     let total = selectedPlan ? selectedPlan.price : 0;
@@ -59,7 +68,7 @@ const Summary = ({ onPrevStep }) => {
             <div className="price">
               {selectedPlan
                 ? `$${selectedPlan.price}/${
-                    selectedPlan.billingCycle === "Monthly" ? "mo" : "yr"
+                    selectedPlan.billingCycle === "monthly" ? "mo" : "yr"
                   }`
                 : ""}
             </div>
@@ -76,7 +85,7 @@ const Summary = ({ onPrevStep }) => {
                     <span>{addon.name}</span>
                     <span>
                       +${addon.price}/
-                      {selectedPlan.billingCycle === "Monthly" ? "mo" : "yr"}
+                      {selectedPlan.billingCycle === "monthly" ? "mo" : "yr"}
                     </span>
                   </div>
                 );
@@ -93,7 +102,7 @@ const Summary = ({ onPrevStep }) => {
           <span>
             +${calculateTotal()}/
             {selectedPlan
-              ? selectedPlan.billingCycle === "Monthly"
+              ? selectedPlan.billingCycle === "monthly"
                 ? "mo"
                 : "yr"
               : ""}
