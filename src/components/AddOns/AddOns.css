@@ -127,7 +127,7 @@
 @media (min-width: 768px) {
   .add-ons {
     box-shadow: none;
-    margin: -7% auto 0;
+    margin: 2% auto 0;
     padding: 1rem;
     width: 100%;
     gap: 2.25rem;

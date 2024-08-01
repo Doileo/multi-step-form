@@ -64,17 +64,17 @@ a:hover {
 @media (min-width: 768px) {
   .confirmation {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     box-shadow: none;
-    margin: 3% auto 0;
+    margin: -1% auto 0;
     padding: 0.5rem;
     width: 100%;
     gap: 2.25rem;
   }
 
   .confirmation .top-elements {
-    margin: 50px 10px 0;
+    margin: 65px 10px 0;
     line-height: 1.6;
   }
 
@@ -85,7 +85,7 @@ a:hover {
   .confirmation .navigation-buttons {
     width: 100%;
     padding: 1rem 0;
-    margin-top: 2rem;
+    margin-top: 2.5rem;
   }
 
   .confirmation__go-home:hover {
