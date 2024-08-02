@@ -36,6 +36,13 @@
   border: 1px solid var(--white-color);
   background-color: transparent;
   color: var(--white-color);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.mobile-steps .step:hover {
+  background-color: var(--sky-blue-color);
+  color: var(--denim-color);
 }
 
 /* Desktop Layout */
