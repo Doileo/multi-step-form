@@ -1,11 +1,12 @@
-// Step.js
 import React from "react";
 import "./Step.css";
 
-const Step = ({ number, text, subtext, isDesktop, onClick }) => {
+const Step = ({ number, text, subtext, isDesktop, onClick, isCompleted }) => {
   return (
     <div
-      className={`step ${isDesktop ? "desktop-step" : "mobile-step"}`}
+      className={`step ${isDesktop ? "desktop-step" : "mobile-step"} ${
+        isCompleted ? "completed" : ""
+      }`}
       onClick={onClick}
     >
       {isDesktop ? (

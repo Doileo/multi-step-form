@@ -5,7 +5,7 @@ import desktopImage from "../../images/bg-sidebar-desktop.svg";
 import mobileImage from "../../images/bg-sidebar-mobile.svg";
 import "./StepLayout.css";
 
-const StepLayout = ({ children }) => {
+const StepLayout = ({ currentStep, children }) => {
   const navigate = useNavigate();
   const [isDesktop, setIsDesktop] = React.useState(window.innerWidth >= 768);
 
@@ -30,6 +30,8 @@ const StepLayout = ({ children }) => {
     navigate(routes[stepNumber - 1]); // Navigate to the corresponding route
   };
 
+  const isCompleted = (stepNumber) => stepNumber < currentStep;
+
   return (
     <div
       className={`step-layout ${
@@ -43,57 +45,31 @@ const StepLayout = ({ children }) => {
         {/* Steps */}
         {isDesktop ? (
           <div className="desktop-steps">
-            <Step
-              number={1}
-              text="STEP 1"
-              subtext="YOUR INFO"
-              isDesktop={isDesktop}
-              onClick={() => handleStepClick(1)}
-            />
-            <Step
-              number={2}
-              text="STEP 2"
-              subtext="SELECT PLAN"
-              isDesktop={isDesktop}
-              onClick={() => handleStepClick(2)}
-            />
-            <Step
-              number={3}
-              text="STEP 3"
-              subtext="ADD-ONS"
-              isDesktop={isDesktop}
-              onClick={() => handleStepClick(3)}
-            />
-            <Step
-              number={4}
-              text="STEP 4"
-              subtext="SUMMARY"
-              isDesktop={isDesktop}
-              onClick={() => handleStepClick(4)}
-            />
+            {[1, 2, 3, 4].map((step) => (
+              <Step
+                key={step}
+                number={step}
+                text={`STEP ${step}`}
+                subtext={
+                  ["YOUR INFO", "SELECT PLAN", "ADD-ONS", "SUMMARY"][step - 1]
+                }
+                isDesktop={isDesktop}
+                onClick={() => handleStepClick(step)}
+                isCompleted={isCompleted(step)}
+              />
+            ))}
           </div>
         ) : (
           <div className="mobile-steps">
-            <Step
-              number={1}
-              isDesktop={isDesktop}
-              onClick={() => handleStepClick(1)}
-            />
-            <Step
-              number={2}
-              isDesktop={isDesktop}
-              onClick={() => handleStepClick(2)}
-            />
-            <Step
-              number={3}
-              isDesktop={isDesktop}
-              onClick={() => handleStepClick(3)}
-            />
-            <Step
-              number={4}
-              isDesktop={isDesktop}
-              onClick={() => handleStepClick(4)}
-            />
+            {[1, 2, 3, 4].map((step) => (
+              <Step
+                key={step}
+                number={step}
+                isDesktop={isDesktop}
+                onClick={() => handleStepClick(step)}
+                isCompleted={isCompleted(step)}
+              />
+            ))}
           </div>
         )}
       </div>
