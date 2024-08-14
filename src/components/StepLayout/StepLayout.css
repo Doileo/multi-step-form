@@ -40,15 +40,19 @@
   transition: background-color 0.3s ease;
 }
 
+.locked {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.step-number {
+  color: var(--white-color);
+}
+
 .step.completed {
   background-color: var(--sky-blue-color);
   color: var(--denim-color);
   border-color: var(--sky-blue-color);
-}
-
-.step-number {
-  background-color: var(--sky-blue-color);
-  color: white;
 }
 
 /* Desktop Layout */

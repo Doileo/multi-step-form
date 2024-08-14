@@ -1,24 +1,28 @@
 import React from "react";
 import "./Step.css";
 
-const Step = ({ number, text, subtext, isDesktop, onClick, isCompleted }) => {
+const Step = ({
+  number,
+  text,
+  subtext,
+  isDesktop,
+  isCompleted,
+  isLocked,
+  onClick,
+}) => {
   return (
     <div
       className={`step ${isDesktop ? "desktop-step" : "mobile-step"} ${
         isCompleted ? "completed" : ""
-      }`}
-      onClick={onClick}
+      } ${isLocked ? "locked" : ""}`}
+      onClick={!isLocked ? onClick : undefined}
     >
-      {isDesktop ? (
-        <>
-          <div className="step-number">{number}</div>
-          <div className="step-text">
-            <div className="step-main-text">{text}</div>
-            <div className="step-sub-text">{subtext}</div>
-          </div>
-        </>
-      ) : (
-        <div className="step-number-mobile">{number}</div>
+      <div className="step-number">{number}</div>
+      {isDesktop && (
+        <div className="step-text">
+          <div className="step-main-text">{text}</div>
+          <div className="step-sub-text">{subtext}</div>
+        </div>
       )}
     </div>
   );
