@@ -13,7 +13,6 @@
   position: relative;
   z-index: 1;
   background: var(--white-color);
-  padding: 1.5rem;
   border-radius: 10px;
   box-shadow: 0px 8px 6px rgba(0, 0, 0, 0.1);
   flex-grow: 1;
@@ -90,12 +89,14 @@ label {
 
   .info-content {
     box-shadow: none;
-    margin: -5% auto;
+    margin: 4% auto -8%;
+    padding: 0 1.5rem;
     display: grid;
     gap: 0.5rem;
     background: transparent;
     min-height: auto;
     flex-grow: unset;
+    width: 85%;
   }
 
   .info-heading {
@@ -109,7 +110,7 @@ label {
   .navigation-buttons {
     position: unset;
     width: 84%;
-    margin: 0 auto;
+    margin: 6% auto 0;
   }
 
   .next-step__button:hover {

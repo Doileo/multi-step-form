@@ -150,9 +150,8 @@ input:checked + .slider:before {
 @media (min-width: 768px) {
   .select-plan {
     box-shadow: none;
-    margin: 4% auto 0;
-    padding: 0 1rem;
-    width: 100%;
+    margin: -2% auto;
+    width: 98%;
     gap: 2.5rem;
   }
 

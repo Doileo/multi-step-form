@@ -67,9 +67,9 @@ a:hover {
     justify-content: center;
     align-items: center;
     box-shadow: none;
-    margin: -1% auto 0;
+    margin: 15% auto 0;
     padding: 0.5rem;
-    width: 100%;
+    width: 90%;
     gap: 2.25rem;
   }
 
@@ -85,7 +85,7 @@ a:hover {
   .confirmation .navigation-buttons {
     width: 100%;
     padding: 1rem 0;
-    margin-top: 2.5rem;
+    margin-top: 18%;
   }
 
   .confirmation__go-home:hover {
