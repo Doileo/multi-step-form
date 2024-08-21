@@ -1,5 +1,4 @@
 import React from "react";
-import "./Step.css";
 
 const Step = ({
   number,
