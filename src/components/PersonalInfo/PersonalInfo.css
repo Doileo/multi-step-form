@@ -10,6 +10,7 @@
   width: 90%;
   max-width: 768px;
   margin: -18% auto;
+  padding: 1.5rem;
   position: relative;
   z-index: 1;
   background: var(--white-color);
@@ -73,7 +74,7 @@ label {
 }
 
 .navigation-buttons button {
-  background-color: #164a8a;
+  background-color: var(--denim-color);
   color: var(--white-color);
   border: none;
   border-radius: 5px;
@@ -89,10 +90,10 @@ label {
 
   .info-content {
     box-shadow: none;
-    margin: 4% auto -8%;
+    margin: 2% auto -8%;
     padding: 0 1.5rem;
     display: grid;
-    gap: 0.5rem;
+    gap: 1rem;
     background: transparent;
     min-height: auto;
     flex-grow: unset;
@@ -111,6 +112,11 @@ label {
     position: unset;
     width: 84%;
     margin: 6% auto 0;
+  }
+
+  .navigation-buttons button {
+    font-size: var(--font-size-16);
+    font-weight: 500;
   }
 
   .next-step__button:hover {
