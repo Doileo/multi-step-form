@@ -6,7 +6,6 @@ import "./PersonalInfo.css";
 const PersonalInfo = ({ onNextStep }) => {
   const navigate = useNavigate();
 
-  // State to hold form data and errors
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -14,26 +13,19 @@ const PersonalInfo = ({ onNextStep }) => {
   });
   const [errors, setErrors] = useState({});
 
-  // Handle input change
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
 
-  // Validate form fields
-  const validate = () => {
+  const handleNextStep = () => {
     const newErrors = {};
     if (!formData.name) newErrors.name = "Name is required";
     if (!formData.email) newErrors.email = "Email is required";
     if (!formData.phone) newErrors.phone = "Phone number is required";
-    return newErrors;
-  };
 
-  // Handle navigation to the next step
-  const handleNextStep = () => {
-    const validationErrors = validate();
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
     } else {
       onNextStep();
       navigate("/select-plan");
@@ -42,8 +34,7 @@ const PersonalInfo = ({ onNextStep }) => {
 
   return (
     <StepLayout currentStep={1}>
-      <div className="personal-info-container">
-        {/* Content */}
+      <section className="personal-info-container">
         <div className="info-content">
           <h1 className="info-heading">Personal info</h1>
           <p className="info-text">
@@ -59,11 +50,21 @@ const PersonalInfo = ({ onNextStep }) => {
                 placeholder="e.g. Stephen King"
                 value={formData.name}
                 onChange={handleChange}
+                aria-required="true"
+                aria-invalid={!!errors.name}
+                aria-describedby={errors.name ? "name-error" : undefined}
               />
               {errors.name && (
-                <span className="error-message">{errors.name}</span>
+                <span
+                  id="name-error"
+                  className="error-message"
+                  aria-live="polite"
+                >
+                  {errors.name}
+                </span>
               )}
             </div>
+
             <div className={`form-group ${errors.email ? "error" : ""}`}>
               <label htmlFor="email">Email Address</label>
               <input
@@ -72,11 +73,21 @@ const PersonalInfo = ({ onNextStep }) => {
                 placeholder="e.g. stephenking@lorem.com"
                 value={formData.email}
                 onChange={handleChange}
+                aria-required="true"
+                aria-invalid={!!errors.email}
+                aria-describedby={errors.email ? "email-error" : undefined}
               />
               {errors.email && (
-                <span className="error-message">{errors.email}</span>
+                <span
+                  id="email-error"
+                  className="error-message"
+                  aria-live="polite"
+                >
+                  {errors.email}
+                </span>
               )}
             </div>
+
             <div className={`form-group ${errors.phone ? "error" : ""}`}>
               <label htmlFor="phone">Phone Number</label>
               <input
@@ -85,25 +96,34 @@ const PersonalInfo = ({ onNextStep }) => {
                 placeholder="e.g. +1 234 567 890"
                 value={formData.phone}
                 onChange={handleChange}
+                aria-required="true"
+                aria-invalid={!!errors.phone}
+                aria-describedby={errors.phone ? "phone-error" : undefined}
               />
               {errors.phone && (
-                <span className="error-message">{errors.phone}</span>
+                <span
+                  id="phone-error"
+                  className="error-message"
+                  aria-live="polite"
+                >
+                  {errors.phone}
+                </span>
               )}
             </div>
           </form>
         </div>
 
-        {/* Navigation Button */}
         <div className="navigation-buttons">
           <button
             type="button"
             className="next-step__button"
             onClick={handleNextStep}
+            aria-label="Proceed to the next step"
           >
             Next Step
           </button>
         </div>
-      </div>
+      </section>
     </StepLayout>
   );
 };
