@@ -4,62 +4,60 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "./AddOns.css";
 
 const AddOns = ({ onNextStep, onPrevStep }) => {
-  const location = useLocation();
+  const { state } = useLocation();
   const navigate = useNavigate();
-  const { selectedPlan } = location.state || { billingCycle: "monthly" }; // Provide a default value for billingCycle
+  const { selectedPlan = { billingCycle: "monthly" } } = state;
 
   const [selectedAddOns, setSelectedAddOns] = useState([]);
 
-  const monthlyAddons = [
-    {
-      id: "online-service",
-      name: "Online service",
-      price: 1,
-      description: "Access to multiplayer games",
-    },
-    {
-      id: "larger-storage",
-      name: "Larger storage",
-      price: 2,
-      description: "Extra 1TB of cloud save",
-    },
-    {
-      id: "customizable-profile",
-      name: "Customizable profile",
-      price: 2,
-      description: "Custom theme on your profile",
-    },
-  ];
-
-  const yearlyAddons = [
-    {
-      id: "online-service",
-      name: "Online service",
-      price: 10,
-      description: "Access to multiplayer games",
-    },
-    {
-      id: "larger-storage",
-      name: "Larger storage",
-      price: 20,
-      description: "Extra 1TB of cloud save",
-    },
-    {
-      id: "customizable-profile",
-      name: "Customizable profile",
-      price: 20,
-      description: "Custom theme on your profile",
-    },
-  ];
-
-  const addons =
-    selectedPlan?.billingCycle === "yearly" ? yearlyAddons : monthlyAddons;
+  const addons = {
+    monthly: [
+      {
+        id: "online-service",
+        name: "Online service",
+        price: 1,
+        description: "Access to multiplayer games",
+      },
+      {
+        id: "larger-storage",
+        name: "Larger storage",
+        price: 2,
+        description: "Extra 1TB of cloud save",
+      },
+      {
+        id: "customizable-profile",
+        name: "Customizable profile",
+        price: 2,
+        description: "Custom theme on your profile",
+      },
+    ],
+    yearly: [
+      {
+        id: "online-service",
+        name: "Online service",
+        price: 10,
+        description: "Access to multiplayer games",
+      },
+      {
+        id: "larger-storage",
+        name: "Larger storage",
+        price: 20,
+        description: "Extra 1TB of cloud save",
+      },
+      {
+        id: "customizable-profile",
+        name: "Customizable profile",
+        price: 20,
+        description: "Custom theme on your profile",
+      },
+    ],
+  }[selectedPlan.billingCycle];
 
   const handleToggleAddon = (addonId) => {
-    setSelectedAddOns((prevSelectedAddOns) =>
-      prevSelectedAddOns.includes(addonId)
-        ? prevSelectedAddOns.filter((id) => id !== addonId)
-        : [...prevSelectedAddOns, addonId]
+    setSelectedAddOns((prev) =>
+      prev.includes(addonId)
+        ? prev.filter((id) => id !== addonId)
+        : [...prev, addonId]
     );
   };
 
@@ -70,7 +68,7 @@ const AddOns = ({ onNextStep, onPrevStep }) => {
 
   const handleGoBack = () => {
     onPrevStep();
-    navigate(-1); // Navigate back to the previous step
+    navigate(-1);
   };
 
   return (
@@ -78,56 +76,55 @@ const AddOns = ({ onNextStep, onPrevStep }) => {
       <div className="add-ons">
         <div className="add-ons__content">
           <h1>Pick add-ons</h1>
-          <p>Add-ons help enhance your gaming experience.</p>
+          <p>Add-ons enhance your gaming experience.</p>
         </div>
         <div className="add-ons__options">
-          {addons.map((addon) => (
+          {addons.map(({ id, name, price, description }) => (
             <div
-              key={addon.id}
+              key={id}
               className={`add-on-option ${
-                selectedAddOns.includes(addon.id) ? "selected" : ""
+                selectedAddOns.includes(id) ? "selected" : ""
               }`}
             >
               <label>
                 <input
                   type="checkbox"
-                  checked={selectedAddOns.includes(addon.id)}
-                  onChange={() => handleToggleAddon(addon.id)}
+                  checked={selectedAddOns.includes(id)}
+                  onChange={() => handleToggleAddon(id)}
+                  aria-label={`${name} - ${description} (+$${price}/${
+                    selectedPlan.billingCycle === "monthly" ? "mo" : "yr"
+                  })`}
                 />
                 <div className="add-on-content">
                   <div className="add-on-info">
-                    <span className="add-on-name">{addon.name}</span>
-                    <span className="add-on-description">
-                      {addon.description}
-                    </span>
+                    <span className="add-on-name">{name}</span>
+                    <span className="add-on-description">{description}</span>
                   </div>
                   <span
                     className={`add-on-price ${
-                      selectedAddOns.includes(addon.id) ? "selected" : ""
+                      selectedAddOns.includes(id) ? "selected" : ""
                     }`}
-                  >{`+$${addon.price}/${
-                    selectedPlan?.billingCycle === "monthly" ? "mo" : "yr"
-                  }`}</span>
+                  >
+                    {`+$${price}/${
+                      selectedPlan.billingCycle === "monthly" ? "mo" : "yr"
+                    }`}
+                  </span>
                 </div>
               </label>
             </div>
           ))}
         </div>
         <div className="navigation-buttons">
-          <div className="previous-step">
-            <button className="go-back__button" onClick={handleGoBack}>
-              Go Back
-            </button>
-          </div>
-          <div className="next-step">
-            <button
-              className="next-step__button"
-              onClick={handleNextStep}
-              disabled={selectedAddOns.length === 0} // Disable button if no add-ons are selected
-            >
-              Next Step
-            </button>
-          </div>
+          <button className="go-back__button" onClick={handleGoBack}>
+            Go Back
+          </button>
+          <button
+            className="next-step__button"
+            onClick={handleNextStep}
+            disabled={selectedAddOns.length === 0}
+          >
+            Next Step
+          </button>
         </div>
       </div>
     </StepLayout>
