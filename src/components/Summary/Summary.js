@@ -4,79 +4,75 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "./Summary.css";
 
 const Summary = ({ onPrevStep }) => {
-  const location = useLocation();
+  const { state } = useLocation();
   const navigate = useNavigate();
-  const { selectedPlan, selectedAddOns } = location.state || {};
+  const { selectedPlan, selectedAddOns } = state || {};
 
-  const monthlyAddons = [
-    { id: "online-service", name: "Online service", price: 1 },
-    { id: "larger-storage", name: "Larger storage", price: 2 },
-    { id: "customizable-profile", name: "Customizable profile", price: 2 },
-  ];
-
-  const yearlyAddons = [
-    { id: "online-service", name: "Online service", price: 10 },
-    { id: "larger-storage", name: "Larger storage", price: 20 },
-    { id: "customizable-profile", name: "Customizable profile", price: 20 },
-  ];
+  const addonsList = {
+    monthly: [
+      { id: "online-service", name: "Online service", price: 1 },
+      { id: "larger-storage", name: "Larger storage", price: 2 },
+      { id: "customizable-profile", name: "Customizable profile", price: 2 },
+    ],
+    yearly: [
+      { id: "online-service", name: "Online service", price: 10 },
+      { id: "larger-storage", name: "Larger storage", price: 20 },
+      { id: "customizable-profile", name: "Customizable profile", price: 20 },
+    ],
+  };
 
   const addons =
-    selectedPlan?.billingCycle === "yearly" ? yearlyAddons : monthlyAddons;
+    selectedPlan?.billingCycle === "yearly"
+      ? addonsList.yearly
+      : addonsList.monthly;
 
   const calculateTotal = () => {
-    let total = selectedPlan ? selectedPlan.price : 0;
-    if (selectedAddOns && selectedAddOns.length > 0) {
-      selectedAddOns.forEach((addonId) => {
-        const addon = addons.find((item) => item.id === addonId);
-        if (addon) {
-          total += addon.price;
-        }
-      });
-    }
-    return total;
+    const planTotal = selectedPlan?.price || 0;
+    const addonsTotal = selectedAddOns?.reduce(
+      (sum, addonId) =>
+        sum + (addons.find((item) => item.id === addonId)?.price || 0),
+      0
+    );
+    return planTotal + addonsTotal;
   };
 
-  const handleGoBack = () => {
-    onPrevStep(); // Navigate back to the previous step
-    navigate("/add-ons"); // Navigate to the add-ons step
-  };
-
-  const handleConfirm = () => {
-    onPrevStep(); // This should navigate back to the previous step
-    navigate("/confirmation");
+  const handleNavigation = (path) => {
+    onPrevStep();
+    navigate(path);
   };
 
   return (
     <StepLayout currentStep={4}>
       <div className="summary">
-        <div className="top-elements">
+        <header className="summary-header">
           <h2>Finishing up</h2>
           <p>Double-check everything looks OK before confirming.</p>
-        </div>
+        </header>
 
-        <div className="plan-details">
+        <section className="plan-details">
           <div className="plan-header">
             <div className="plan-info">
-              <div className="plan-name">
-                <span>{selectedPlan ? selectedPlan.name : ""}</span>
-                <span>({selectedPlan ? selectedPlan.billingCycle : ""})</span>
-              </div>
-              <a href="#select-plan" onClick={() => navigate("/select-plan")}>
+              <span>
+                {selectedPlan?.name} ({selectedPlan?.billingCycle})
+              </span>
+              <a
+                href="#select-plan"
+                onClick={() => handleNavigation("/select-plan")}
+              >
                 Change
               </a>
             </div>
             <div className="price">
-              {selectedPlan
-                ? `$${selectedPlan.price}/${
-                    selectedPlan.billingCycle === "monthly" ? "mo" : "yr"
-                  }`
-                : ""}
+              {selectedPlan &&
+                `$${selectedPlan.price}/${
+                  selectedPlan.billingCycle === "monthly" ? "mo" : "yr"
+                }`}
             </div>
           </div>
 
           <hr />
 
-          {selectedAddOns && selectedAddOns.length > 0 && (
+          {selectedAddOns?.length > 0 && (
             <div className="addons">
               {selectedAddOns.map((addonId) => {
                 const addon = addons.find((item) => item.id === addonId);
@@ -85,41 +81,38 @@ const Summary = ({ onPrevStep }) => {
                     <span>{addon.name}</span>
                     <span>
                       +${addon.price}/
-                      {selectedPlan.billingCycle === "monthly" ? "mo" : "yr"}
+                      {selectedPlan?.billingCycle === "monthly" ? "mo" : "yr"}
                     </span>
                   </div>
                 );
               })}
             </div>
           )}
-        </div>
+        </section>
 
-        <div className="total">
+        <section className="total">
           <span>
-            Total (per{" "}
-            {selectedPlan ? selectedPlan.billingCycle.toLowerCase() : "month"})
+            Total (per {selectedPlan?.billingCycle.toLowerCase() || "month"})
           </span>
           <span>
             +${calculateTotal()}/
-            {selectedPlan
-              ? selectedPlan.billingCycle === "monthly"
-                ? "mo"
-                : "yr"
-              : ""}
+            {selectedPlan?.billingCycle === "monthly" ? "mo" : "yr"}
           </span>
-        </div>
+        </section>
 
         <div className="navigation-buttons">
-          <div className="previous-step">
-            <button className="go-back__button" onClick={handleGoBack}>
-              Go Back
-            </button>
-          </div>
-          <div className="next-step">
-            <button className="next-step__button" onClick={handleConfirm}>
-              Confirm
-            </button>
-          </div>
+          <button
+            className="go-back__button"
+            onClick={() => handleNavigation("/add-ons")}
+          >
+            Go Back
+          </button>
+          <button
+            className="next-step__button"
+            onClick={() => handleNavigation("/confirmation")}
+          >
+            Confirm
+          </button>
         </div>
       </div>
     </StepLayout>
