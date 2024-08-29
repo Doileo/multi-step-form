@@ -33,7 +33,7 @@ p {
 
 body {
   font-family: "Ubuntu", sans-serif;
-  color: var(--grey-color);
+  color: var(--very-dark-blue);
   background-color: var(--background-color);
   line-height: 1.5rem;
   min-height: 100vh;
@@ -152,6 +152,8 @@ select {
   --border-color: hsl(231, 18%, 90%);
   --denim-color: hsl(213, 96%, 13%);
   --grey-color: hsl(231, 11%, 63%);
+  --slate-blue-gray: #6a707a;
+  --very-dark-blue: hsl(220, 8.3%, 14.1%);
   --light-blue-color: hsl(231, 100%, 85%);
   --light-grey-color: hsl(231, 18%, 90%);
   --orange-color: hsl(25, 100%, 71%);

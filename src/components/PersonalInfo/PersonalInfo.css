@@ -25,6 +25,10 @@
   color: var(--denim-color);
 }
 
+.info-text {
+  color: var(--slate-blue-gray);
+}
+
 .info-form {
   display: flex;
   flex-direction: column;
@@ -49,7 +53,7 @@ label {
   padding: 10px;
   border: 1px solid var(--border-color);
   border-radius: 4px;
-  color: var(--grey-color);
+  color: var(--slate-blue-gray);
 }
 
 /* Add the red error border color */
