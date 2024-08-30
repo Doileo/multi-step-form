@@ -33,7 +33,7 @@ p {
 
 body {
   font-family: "Ubuntu", sans-serif;
-  color: var(--very-dark-blue);
+  color: var(--slate-blue-gray);
   background-color: var(--background-color);
   line-height: 1.5rem;
   min-height: 100vh;
@@ -152,7 +152,7 @@ select {
   --border-color: hsl(231, 18%, 90%);
   --denim-color: hsl(213, 96%, 13%);
   --grey-color: hsl(231, 11%, 63%);
-  --slate-blue-gray: #6a707a;
+  --slate-blue-gray: hsl(217, 18%, 45%);
   --very-dark-blue: hsl(220, 8.3%, 14.1%);
   --light-blue-color: hsl(231, 100%, 85%);
   --light-grey-color: hsl(231, 18%, 90%);
@@ -177,7 +177,7 @@ select {
 /* ------------------- */
 
 header {
-  color: var(--denim-color);
+  color: var(--slate-blue-gray);
   padding: 1rem;
   text-align: left;
 }

@@ -79,7 +79,7 @@
 }
 
 .select-plan__billing-toggle .active {
-  color: var(--denim-color);
+  color: var(--purple-color);
 }
 
 .switch {

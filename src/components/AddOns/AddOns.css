@@ -95,7 +95,7 @@
 .add-on-description,
 .add-on-price {
   font-size: var(--font-size-12);
-  color: var(--grey-color);
+  color: var(--slate-blue-gray);
 }
 
 .add-on-price.selected {
