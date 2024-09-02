@@ -38,3 +38,19 @@ Additional features:
 - Users cannot move to the next step unless required fields are filled or options are selected.
 - A "Back Home" button is included on the confirmation step to return to the home page.
 - The "Go Back" button on all pages has an orange hover effect, matching the design file.
+
+### Screenshots
+
+<div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+
+  <div style="flex: 1; margin: 5px;">
+    <img src="src/images/mobile-personal-info-view.png" alt="Mobile Personal Info View" style="width: 100%; height: auto;">
+    <p>Personal Info View</p>
+  </div>
+
+  <div style="flex: 1; margin: 5px;">
+    <img src="src/images/mobile-error-screenshot.png" alt="Mobile Confirmation Screenshot" style="width: 100%; height: auto;">
+    <p>Confirmation Screenshot</p>
+  </div>
+
+</div>
