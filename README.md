@@ -41,6 +41,8 @@ Additional features:
 
 ### Screenshots
 
+#### Mobile view screenshots
+
 <table>
   <tr>
     <td>
@@ -50,8 +52,48 @@ Additional features:
     </td>
     <td>
       <strong>Personal Info View with Error:</strong><br>
-      <img src="src/images/mobile-error-screenshot.png" alt="Mobile Personal Info View with Error" width="200"/><br>
+      <img src="src/images/mobile-error-screenshot.png" alt="Mobile Personal Info View with Error" width="300"/><br>
       <em>Screenshot of the Personal Info View on mobile, including the error messages.</em>
     </td>
   </tr>
 </table>
+
+#### Desktop view screenshots
+
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+
+  <div style="text-align: center;">
+    <strong>Personal Info View:</strong><br>
+    <img src="src/images/personal-info-view-desktop.png" alt="Desktop Personal Info View" style="width: 100%; height: auto;"/><br>
+  </div>
+
+  <div style="text-align: center;">
+    <strong>Select Plan View</strong><br>
+    <img src="src/images/select-plan-view-desktop.png" alt="Desktop Select Plan with Previous Step Completed" style="width: 100%; height: auto;"/><br>
+    <em>Screenshot of the Select Plan step with the previous step completed and hover effect on the Go Back button.</em>
+  </div>
+
+  <div style="text-align: center;">
+    <strong>Add-Ons View</strong><br>
+    <img src="src/images/add-ons-view-desktop.png" alt="Desktop Add-Ons with Selected Add and Hover Effect" style="width: 100%; height: auto;"/><br>
+    <em>Screenshot of the Add-Ons step with a selected add-on and hover effect on another add-on.</em>
+  </div>
+
+  <div style="text-align: center;">
+    <strong>Summary View:</strong><br>
+    <img src="src/images/summary-view-desktop.png" alt="Desktop Summary with Hover Effect" style="width: 100%; height: auto;"/><br>
+    <em>Screenshot of the Summary step with hover effect on the Change option.</em>
+  </div>
+
+  <div style="text-align: center;">
+    <strong>Confirmation View:</strong><br>
+    <img src="src/images/confirmation-view-desktop.png" alt="Desktop Confirmation View" style="width: 100%; height: auto;"/><br>
+    <em>Screenshot of the Confirmation step on desktop.</em>
+  </div>
+
+  <div style="text-align: center;">
+    <strong>Confirmation with Hover Effect:</strong><br>
+    <img src="src/images/confirmation-hover-view-desktop.png" alt="Desktop Confirmation with Hover Effect" style="width: 100%; height: auto;"/><br>
+    <em>Screenshot of the Confirmation step with hover effect on the Back to Home button.</em>
+  </div>
+</div>
