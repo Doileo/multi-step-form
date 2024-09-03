@@ -41,16 +41,17 @@ Additional features:
 
 ### Screenshots
 
-<div style="display: flex; justify-content: space-between;">
-
-  <div style="flex: 1; margin: 5px;">
-    <img src="src/images/mobile-personal-info-view.png" alt="Mobile Personal Info View" style="width: 48%; height: auto; margin-right: 4%;">
-    <p>Personal Info View</p>
-  </div>
-
-  <div style="flex: 1; margin: 5px;">
-    <img src="src/images/mobile-error-screenshot.png" alt="Mobile Confirmation Screenshot" style="width: 48%; height: auto;">
-    <p>Confirmation Screenshot</p>
-  </div>
-
-</div>
+<table>
+  <tr>
+    <td>
+      <strong>Personal Info View:</strong><br>
+      <img src="src/images/mobile-personal-info-view.png" alt="Mobile Personal Info View" width="300"/><br>
+      <em>Screenshot of the Personal Info View on mobile.</em>
+    </td>
+    <td>
+      <strong>Personal Info View with Error:</strong><br>
+      <img src="src/images/mobile-error-screenshot.png" alt="Mobile Personal Info View with Error" width="200"/><br>
+      <em>Screenshot of the Personal Info View on mobile, including the error messages.</em>
+    </td>
+  </tr>
+</table>
