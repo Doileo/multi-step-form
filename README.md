@@ -4,17 +4,17 @@ This is a solution to the [Multi-step form challenge on Frontend Mentor](https:/
 
 ## Table of contents
 
-- [Overview](#overview)
-  - [The challenge](#the-challenge)
-  - [Screenshot](#screenshot)
-  - [Links](#links)
-- [My process](#my-process)
-  - [Built with](#built-with)
-  - [What I learned](#what-i-learned)
-  - [Continued development](#continued-development)
-  - [Useful resources](#useful-resources)
-- [Author](#author)
-- [Acknowledgments](#acknowledgments)
+- [Frontend Mentor - Multi-step form solution](#frontend-mentor---multi-step-form-solution)
+  - [Table of contents](#table-of-contents)
+  - [Overview](#overview)
+    - [The challenge](#the-challenge)
+    - [Screenshots](#screenshots)
+      - [Mobile view screenshots](#mobile-view-screenshots)
+      - [Desktop View Screenshots](#desktop-view-screenshots)
+    - [Links](#links)
+  - [My process](#my-process)
+    - [Built with](#built-with)
+    - [What I learned](#what-i-learned)
 
 ## Overview
 
@@ -95,3 +95,24 @@ Additional features:
     </td>
   </tr>
 </table>
+
+### Links
+
+- Solution URL: [solution URL here]()
+- Live Site URL: [live site URL here]()
+
+## My process
+
+### Built with
+
+- HTML5: Used to structure the content in a clear and accessible way.
+- CSS Custom Properties: Employed to maintain consistent styling and make it easy to update.
+- Flexbox: Utilized to create flexible and responsive layouts.
+- Mobile-First Design: Applied to ensure the design works well on mobile devices first, then scales up.
+- React: Used to build reusable components and manage the application's state.
+- BEM (Block Element Modifier) Naming: Adopted for clear and maintainable CSS class naming.
+- React Router: Implemented for seamless navigation between different steps of the form.
+
+### What I learned
+
+- React Router: I learned how to use React Router to manage navigation between different steps of the form. This allowed me to create a seamless multi-step experience without reloading the page, enhancing the user experience and making the application more dynamic.
