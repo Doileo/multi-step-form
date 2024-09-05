@@ -17,6 +17,11 @@ This is a solution to the [Multi-step form challenge on Frontend Mentor](https:/
     - [What I learned](#what-i-learned)
     - [Continued Development](#continued-development)
     - [Useful Resources](#useful-resources)
+  - [Installation Instructions](#installation-instructions)
+  - [Dependencies](#dependencies)
+  - [Usage Instructions](#usage-instructions)
+  - [Project Structure](#project-structure)
+    - [Key Files](#key-files)
   - [Author](#author)
 
 ## Overview
@@ -136,6 +141,67 @@ Additional features:
 - [React Hooks Guide (useState & useEffect)](https://reactjs.org/docs/hooks-overview.html): Learning about hooks like `useState` and `useEffect` from this guide helped me manage state between different components, especially when tracking user input across multiple steps. The ability to handle dynamic state updates was crucial for the interactive nature of the form.
 
 - [Handling Forms in React](https://reactjs.org/docs/forms.html): This guide on handling forms in React helped me understand how to manage form inputs, validation, and submission in a structured way. It was particularly useful for implementing form validation and ensuring proper handling of user data.
+
+## Installation Instructions
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/Doileo/multi-step-form.git
+   cd multi-step-form
+
+   ```
+
+2. **Install dependencies:** Ensure you have Node.js installed. Run the following command to install project dependencies:
+
+```bash
+ npm install
+```
+
+3. **Run the project:** To start the development server, use the following command:
+
+```bash
+ npm start
+```
+
+4. **Access the project:** Once the server is running, navigate to http://localhost:3000 in your browser to view the app.
+
+## Dependencies
+
+- **Node.js**: Ensure you have Node.js installed. You can download it from the [Node.js official website](https://nodejs.org/).
+- **npm**: Node.js package manager, included with Node.js installation.
+
+To install the project dependencies, run:
+
+```bash
+npm install
+```
+
+## Usage Instructions
+
+Once the project is set up and running, you can:
+
+- Open your browser and navigate to http://localhost:3000.
+- Complete the multi-step form as per the challenge requirements.
+- Use the "Go Back" and "Next Step" buttons to navigate between steps.
+- Review the summary and confirm your selections on the final step.
+
+## Project Structure
+
+- `src/`
+  - `components/`: Contains React components for each step of the form.
+  - `images/`: Stores images used in the project.
+  - `styles/`: Contains CSS files for styling the application.
+  - `App.js`: Main application component that renders the form steps.
+  - `index.js`: Entry point of the React application.
+- `public/`
+  - `index.html`: The main HTML file for the project.
+
+### Key Files
+
+- `App.js`: Manages the routing and rendering of form steps.
+- `index.js`: Initializes and renders the React application.
+- `styles/`: Contains the styles used throughout the project to ensure a consistent look and feel.
 
 ## Author
 
