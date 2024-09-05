@@ -15,6 +15,9 @@ This is a solution to the [Multi-step form challenge on Frontend Mentor](https:/
   - [My process](#my-process)
     - [Built with](#built-with)
     - [What I learned](#what-i-learned)
+    - [Continued Development](#continued-development)
+    - [Useful Resources](#useful-resources)
+  - [Author](#author)
 
 ## Overview
 
@@ -116,3 +119,26 @@ Additional features:
 ### What I learned
 
 - React Router: I learned how to use React Router to manage navigation between different steps of the form. This allowed me to create a seamless multi-step experience without reloading the page, enhancing the user experience and making the application more dynamic.
+
+### Continued Development
+
+- Accessibility Enhancements: Implement additional accessibility features, such as improved keyboard navigation, ARIA roles, and more comprehensive screen reader support.
+- Component Optimization: Refactor some of the existing components to make them more reusable and modular, enhancing maintainability and scalability.
+- State Management: Explore more advanced state management techniques, potentially integrating a solution like Redux or Context API to manage the app's state more efficiently.
+- Animations: Add subtle animations to improve user interactions and provide a smoother experience.
+
+### Useful Resources
+
+- [React Documentation](https://reactjs.org/docs/getting-started.html): The official React documentation was an essential guide for understanding the core concepts of React, such as components, props, and state. It helped me structure the individual steps of the form as reusable components, enhancing code readability and maintainability.
+
+- [React Router Documentation](https://reactrouter.com/web/guides/quick-start): This resource was critical for setting up navigation between the different steps of the form. It taught me how to implement `react-router-dom` to manage multi-page routes.
+
+- [React Hooks Guide (useState & useEffect)](https://reactjs.org/docs/hooks-overview.html): Learning about hooks like `useState` and `useEffect` from this guide helped me manage state between different components, especially when tracking user input across multiple steps. The ability to handle dynamic state updates was crucial for the interactive nature of the form.
+
+- [Handling Forms in React](https://reactjs.org/docs/forms.html): This guide on handling forms in React helped me understand how to manage form inputs, validation, and submission in a structured way. It was particularly useful for implementing form validation and ensuring proper handling of user data.
+
+## Author
+
+- Frontend Mentor - [@Doileo](https://www.frontendmentor.io/profile/Doileo)
+- LinkedIn - [@Doina](https://www.linkedin.com/in/doinaleovchindeveloper/)
+- GitHub - [@Doileo](https://github.com/Doileo)
