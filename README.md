@@ -107,7 +107,7 @@ Additional features:
 ### Links
 
 - Solution URL: [solution URL here]()
-- Live Site URL: [live site URL here]()
+- Live Version: [live version here](https://formnavigator.netlify.app/)
 
 ## My process
 
