@@ -44,17 +44,22 @@ const PersonalInfo = ({ onNextStep }) => {
 
   return (
     <StepLayout currentStep={1}>
-      {" "}
       {/* Layout component for the current step */}
       <section className="personal-info-container">
         <div className="info-content">
-          <h1 className="info-heading">Personal info</h1>
+          <h1 id="personal-info-heading" className="info-heading">
+            Personal info
+          </h1>
           <p className="info-text">
             Please provide your name, email address, and phone number.
           </p>
 
           {/* Form to collect personal info */}
-          <form className="info-form" onSubmit={handleNextStep}>
+          <form
+            className="info-form"
+            onSubmit={handleNextStep}
+            aria-labelledby="personal-info-heading"
+          >
             {/* Name input field with error handling */}
             <div className={`form-group ${errors.name ? "error" : ""}`}>
               <label htmlFor="name">Name</label>
@@ -63,18 +68,16 @@ const PersonalInfo = ({ onNextStep }) => {
                 id="name"
                 placeholder="e.g. Stephen King"
                 value={formData.name}
-                onChange={handleChange("name")} // Handle change for name
-                aria-required="true"
-                aria-invalid={!!errors.name} // Indicate if there's an error
-                aria-describedby={errors.name ? "name-error" : undefined} // Associate error message with input
+                onChange={handleChange("name")}
+                required
+                aria-invalid={!!errors.name}
+                aria-describedby={errors.name ? "name-error" : undefined}
               />
-              {/* Display error message for name field */}
               {errors.name && (
                 <span
                   id="name-error"
                   className="error-message"
-                  role="alert" // Announce error immediately
-                  aria-live="polite" // Ensure the error is announced politely
+                  aria-live="polite" // announce politely
                 >
                   {errors.name}
                 </span>
@@ -89,18 +92,16 @@ const PersonalInfo = ({ onNextStep }) => {
                 id="email"
                 placeholder="e.g. stephenking@lorem.com"
                 value={formData.email}
-                onChange={handleChange("email")} // Handle change for email
-                aria-required="true"
-                aria-invalid={!!errors.email} // Indicate if there's an error
-                aria-describedby={errors.email ? "email-error" : undefined} // Associate error message with input
+                onChange={handleChange("email")}
+                required
+                aria-invalid={!!errors.email}
+                aria-describedby={errors.email ? "email-error" : undefined}
               />
-              {/* Display error message for email field */}
               {errors.email && (
                 <span
                   id="email-error"
                   className="error-message"
-                  role="alert" // Announce error immediately
-                  aria-live="polite" // Ensure the error is announced politely
+                  aria-live="polite"
                 >
                   {errors.email}
                 </span>
@@ -115,18 +116,16 @@ const PersonalInfo = ({ onNextStep }) => {
                 id="phone"
                 placeholder="e.g. +1 234 567 890"
                 value={formData.phone}
-                onChange={handleChange("phone")} // Handle change for phone
-                aria-required="true"
-                aria-invalid={!!errors.phone} // Indicate if there's an error
-                aria-describedby={errors.phone ? "phone-error" : undefined} // Associate error message with input
+                onChange={handleChange("phone")}
+                required
+                aria-invalid={!!errors.phone}
+                aria-describedby={errors.phone ? "phone-error" : undefined}
               />
-              {/* Display error message for phone field */}
               {errors.phone && (
                 <span
                   id="phone-error"
                   className="error-message"
-                  role="alert" // Announce error immediately
-                  aria-live="polite" // Ensure the error is announced politely
+                  aria-live="polite"
                 >
                   {errors.phone}
                 </span>
@@ -135,11 +134,7 @@ const PersonalInfo = ({ onNextStep }) => {
 
             {/* Navigation buttons */}
             <div className="navigation-buttons">
-              <button
-                type="submit"
-                className="next-step__button"
-                aria-label="Proceed to the next step"
-              >
+              <button type="submit" className="next-step__button">
                 Next Step
               </button>
             </div>
