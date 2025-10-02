@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import StepLayout from "../StepLayout/StepLayout";
 import arcadeIcon from "../../images/icon-arcade.svg";
 import advancedIcon from "../../images/icon-advanced.svg";
@@ -23,6 +23,9 @@ const SelectPlan = ({ onNextStep, onPrevStep }) => {
   const [billingCycle, setBillingCycle] = useState("monthly");
   const navigate = useNavigate();
 
+  // Refs for arrow key navigation
+  const planRefs = useRef([]);
+
   const handleNextStep = () => {
     if (selectedPlan) {
       const selectedPlanDetails = {
@@ -43,18 +46,37 @@ const SelectPlan = ({ onNextStep, onPrevStep }) => {
       prevCycle === "monthly" ? "yearly" : "monthly"
     );
 
-  const PlanOption = ({ plan }) => (
+  const handleKeyDown = (e, index) => {
+    if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+      e.preventDefault();
+      const next = (index + 1) % plans.length;
+      planRefs.current[next].focus();
+    } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+      e.preventDefault();
+      const prev = (index - 1 + plans.length) % plans.length;
+      planRefs.current[prev].focus();
+    } else if (e.key === " " || e.key === "Enter") {
+      e.preventDefault();
+      setSelectedPlan(plans[index]);
+    }
+  };
+
+  const PlanOption = ({ plan, index }) => (
     <button
+      ref={(el) => (planRefs.current[index] = el)}
       type="button"
-      aria-pressed={selectedPlan?.id === plan.id}
+      role="radio"
+      aria-checked={selectedPlan?.id === plan.id}
       className={`plan-option ${
         selectedPlan?.id === plan.id ? "selected" : ""
       }`}
       onClick={() => setSelectedPlan(plan)}
+      onKeyDown={(e) => handleKeyDown(e, index)}
     >
       <img
         src={plan.icon}
-        alt={`${plan.name} icon`}
+        alt=""
+        aria-hidden="true"
         className="plan-option__icon"
       />
       <div>
@@ -76,15 +98,17 @@ const SelectPlan = ({ onNextStep, onPrevStep }) => {
           <h1>Select your plan</h1>
           <p>You have the option of monthly or yearly billing.</p>
         </header>
-        <section
+
+        <div
           className="select-plan__options"
           role="radiogroup"
           aria-label="Plan options"
         >
-          {plans.map((plan) => (
-            <PlanOption key={plan.id} plan={plan} />
+          {plans.map((plan, index) => (
+            <PlanOption key={plan.id} plan={plan} index={index} />
           ))}
-        </section>
+        </div>
+
         <div className="select-plan__billing-toggle">
           <span className={billingCycle === "monthly" ? "active" : ""}>
             Monthly
@@ -102,6 +126,7 @@ const SelectPlan = ({ onNextStep, onPrevStep }) => {
             Yearly
           </span>
         </div>
+
         <footer className="navigation-buttons">
           <button className="go-back__button" onClick={onPrevStep}>
             Go Back
