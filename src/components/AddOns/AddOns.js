@@ -4,9 +4,14 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "./AddOns.css";
 
 const AddOns = ({ onNextStep, onPrevStep }) => {
-  const { state } = useLocation();
+  const location = useLocation();
   const navigate = useNavigate();
-  const { selectedPlan = { billingCycle: "monthly" } } = state;
+
+  // Safely read selectedPlan from location.state or provide a fallback
+  const selectedPlan = location.state?.selectedPlan || {
+    billingCycle: "monthly",
+    name: "Demo Plan",
+  };
 
   const [selectedAddOns, setSelectedAddOns] = useState([]);
 
@@ -61,72 +66,93 @@ const AddOns = ({ onNextStep, onPrevStep }) => {
     );
   };
 
-  const handleNextStep = () => {
-    onNextStep();
+  const handleNextStep = (e) => {
+    e.preventDefault();
+    onNextStep?.();
     navigate("/summary", { state: { selectedPlan, selectedAddOns } });
   };
 
   const handleGoBack = () => {
-    onPrevStep();
+    onPrevStep?.();
     navigate(-1);
   };
 
   return (
     <StepLayout currentStep={3}>
-      <div className="add-ons">
+      <main className="add-ons">
         <div className="add-ons__content">
-          <h1>Pick add-ons</h1>
-          <p>Add-ons enhance your gaming experience.</p>
+          <h1 id="addons-heading">Pick add-ons</h1>
+          <p id="addons-desc">
+            Add-ons enhance your {selectedPlan.name} experience.
+          </p>
         </div>
-        <div className="add-ons__options">
-          {addons.map(({ id, name, price, description }) => (
-            <div
-              key={id}
-              className={`add-on-option ${
-                selectedAddOns.includes(id) ? "selected" : ""
-              }`}
-            >
-              <label>
-                <input
-                  type="checkbox"
-                  checked={selectedAddOns.includes(id)}
-                  onChange={() => handleToggleAddon(id)}
-                  aria-label={`${name} - ${description} (+$${price}/${
-                    selectedPlan.billingCycle === "monthly" ? "mo" : "yr"
-                  })`}
-                />
-                <div className="add-on-content">
-                  <div className="add-on-info">
-                    <span className="add-on-name">{name}</span>
-                    <span className="add-on-description">{description}</span>
-                  </div>
-                  <span
-                    className={`add-on-price ${
-                      selectedAddOns.includes(id) ? "selected" : ""
-                    }`}
-                  >
-                    {`+$${price}/${
-                      selectedPlan.billingCycle === "monthly" ? "mo" : "yr"
-                    }`}
-                  </span>
+
+        <form
+          aria-labelledby="addons-heading"
+          aria-describedby="addons-desc"
+          onSubmit={handleNextStep}
+        >
+          <fieldset>
+            <legend className="sr-only">Available add-ons</legend>
+
+            <div className="add-ons__options">
+              {addons.map(({ id, name, price, description }) => (
+                <div
+                  key={id}
+                  className={`add-on-option ${
+                    selectedAddOns.includes(id) ? "selected" : ""
+                  }`}
+                >
+                  <input
+                    type="checkbox"
+                    id={id}
+                    name="addons"
+                    value={id}
+                    checked={selectedAddOns.includes(id)}
+                    onChange={() => handleToggleAddon(id)}
+                  />
+                  <label htmlFor={id}>
+                    <div className="add-on-content">
+                      <div className="add-on-info">
+                        <span className="add-on-name">{name}</span>
+                        <span className="add-on-description">
+                          {description}
+                        </span>
+                      </div>
+                      <span
+                        className={`add-on-price ${
+                          selectedAddOns.includes(id) ? "selected" : ""
+                        }`}
+                      >
+                        {`+$${price}/${
+                          selectedPlan.billingCycle === "monthly" ? "mo" : "yr"
+                        }`}
+                      </span>
+                    </div>
+                  </label>
                 </div>
-              </label>
+              ))}
             </div>
-          ))}
-        </div>
-        <div className="navigation-buttons">
-          <button className="go-back__button" onClick={handleGoBack}>
-            Go Back
-          </button>
-          <button
-            className="next-step__button"
-            onClick={handleNextStep}
-            disabled={selectedAddOns.length === 0}
-          >
-            Next Step
-          </button>
-        </div>
-      </div>
+          </fieldset>
+
+          <div className="navigation-buttons">
+            <button
+              type="button"
+              className="go-back__button"
+              onClick={handleGoBack}
+            >
+              Go Back
+            </button>
+            <button
+              type="submit"
+              className="next-step__button"
+              disabled={selectedAddOns.length === 0}
+            >
+              Next Step
+            </button>
+          </div>
+        </form>
+      </main>
     </StepLayout>
   );
 };
